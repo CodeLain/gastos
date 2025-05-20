@@ -11,9 +11,13 @@ class GastoListView(ListView):
 
 class GastoCreateView(CreateView):
     model = Gasto
-    form_class = GastoForm
+    fields = ['categoria', 'monto', 'fecha', 'descripcion', 'imagen']  # or use form_class = GastoForm
     template_name = 'gasto_form.html'
     success_url = reverse_lazy('gasto_list')
+
+    def form_invalid(self, form):
+        print("Form errors:", form.errors)  # Helpful for debugging
+        return super().form_invalid(form)
 
 class GastoUpdateView(UpdateView):
     model = Gasto
