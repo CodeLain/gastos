@@ -23,6 +23,21 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-light bg-light mb-3">
+  <div class="container-fluid">
+    <span class="navbar-text">
+      {% if user.is_authenticated %}
+        👋 Hola, {{ user.username }} |
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-danger">Salir</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary">Iniciar sesión</a>
+      {% endif %}
+    </span>
+  </div>
+</nav>
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-primary">💸 Lista de Gastos</h2>
