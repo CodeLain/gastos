@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 from .forms import RegistroForm
 
-class GastoListView(ListView, LoginRequiredMixin):
+class GastoListView(LoginRequiredMixin, ListView):
     model = Gasto
     template_name = 'gasto_list.html'
     context_object_name = 'gastos'
