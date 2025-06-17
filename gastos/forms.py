@@ -16,6 +16,12 @@ class RegistroForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+        error_messages = {
+            'username': {
+                'unique': "Este nombre de usuario ya está registado.",
+            },
+        }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'class': 'form-control'})
