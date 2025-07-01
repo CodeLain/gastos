@@ -2,122 +2,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Lista de Gastos</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .sidebar {
-      position: fixed;
-      top: 0; left: 0;
-      width: 220px;
-      height: 100vh;
-      background-color: #f8f9fa;
-      border-right: 1px solid #ddd;
-      padding: 1rem;
-    }
-    .content {
-      margin-left: 240px;
-      padding: 2rem;
-    }
-    .category-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: .25rem .5rem;
-    }
-    .category-item a {
-      text-decoration: none;
-      color: #333;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Lista de Gastos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        .content {
+            margin-left: 240px;
+            padding: 2rem;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .25rem .5rem;
+        }
+
+        .category-item a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
 
 <div class="sidebar">
-  {% if user.is_authenticated %}
-    <div class="mb-4">
-      <strong>👤 {{ user.username }}</strong>
+    {% if user.is_authenticated %}
+        <div class="mb-4">
+            <strong>👤 Bienvenido, {{ user.username }}</strong>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger">Salir</button>
+        </form>
+        </div>
+    {% endif %}
+    <h6>Categorías</h6>
+    <div class="list-group mb-3">
+        {% for cat in sidebar_categories %}
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ cat.nombre }}</span>
+                <div class="btn-group" role="group">
+                    <a href="{% url 'categoria_edit' cat.pk %}" class="btn btn-outline-secondary btn-sm">✏️</a>
+                    <form action="#" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">🗑️</button>
+                    </form>
+                </div>
+            </div>
+        {% empty %}
+            <div class="text-muted px-3">No hay categorías</div>
+        {% endfor %}
     </div>
-  {% endif %}
-  <h6>Categorías</h6>
-  <div class="list-group mb-3">
-    {% for cat in sidebar_categories %}
-      <div class="category-item">
-        <span>{{ cat.nombre }}</span>
-        <a href="{% url 'categoria_edit' cat.pk %}" class="btn btn-outline-secondary btn-sm">✏️</a>
-      </div>
-    {% empty %}
-      <div class="text-muted">No hay categorías</div>
-    {% endfor %}
-  </div>
-  {% if user.is_authenticated %}
-    <a href="{% url 'categoria_create' %}" class="btn btn-sm btn-success">➕ Nueva categoría</a>
-  {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'categoria_create' %}" class="btn btn-sm btn-success">➕ Nueva categoría</a>
+    {% endif %}
 </div>
 
 <div class="content">
-  <nav class="navbar navbar-light bg-light mb-3">
-    <div class="container-fluid">
+    {% comment %}<nav class="navbar navbar-light bg-light mb-3">
+        <div class="container-fluid">
       <span class="navbar-text">
         {% if user.is_authenticated %}
-          👋 Hola, {{ user.username }} |
-          <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            👋 Hola, {{ user.username }} |
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn btn-sm btn-outline-danger">Salir</button>
           </form>
         {% else %}
-          <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary me-2">Iniciar sesión</a>
-          <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-success">Registrarse</a>
+            <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary me-2">Iniciar sesión</a>
+            <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-success">Registrarse</a>
         {% endif %}
       </span>
+        </div>{% endcomment %}
+    </nav>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">💸 Lista de Gastos</h2>
+        {% if user.is_authenticated %}
+            <a href="{% url 'gasto_create' %}" class="btn btn-success">➕ Nuevo Gasto</a>
+        {% endif %}
     </div>
-  </nav>
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="text-primary">💸 Lista de Gastos</h2>
-    {% if user.is_authenticated %}
-      <a href="{% url 'gasto_create' %}" class="btn btn-success">➕ Nuevo Gasto</a>
-    {% endif %}
-  </div>
-
-  <div class="table-responsive shadow-sm rounded">
-    <table class="table table-hover table-bordered align-middle">
-      <thead class="table-dark">
-        <tr>
-          <th>📅 Fecha</th>
-          <th>📂 Categoría</th>
-          <th>💰 Monto</th>
-          <th>📝 Descripción</th>
-          <th>🖼️ Imagen</th>
-          <th>✏️ Editar</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for gasto in gastos %}
-        <tr>
-          <td>{{ gasto.fecha }}</td>
-          <td>{{ gasto.categoria.nombre }}</td>
-          <td><span class="badge bg-primary">${{ gasto.monto }}</span></td>
-          <td>{{ gasto.descripcion|default:"—" }}</td>
-          <td>
-            {% if gasto.imagen %}
-              <img src="{{ gasto.imagen.url }}" alt="Recibo" style="max-height:60px; border-radius:6px;">
-            {% else %}
-              <span class="text-muted">Sin imagen</span>
-            {% endif %}
-          </td>
-          <td>
-            <a href="{% url 'gasto_edit' gasto.pk %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-          </td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="6" class="text-center text-muted">No hay gastos registrados aún.</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>📅 Fecha</th>
+                <th>📂 Categoría</th>
+                <th>💰 Monto</th>
+                <th>📝 Descripción</th>
+                <th>🖼️ Imagen</th>
+                <th>⚙️ Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for gasto in gastos %}
+                <tr>
+                    <td>{{ gasto.fecha }}</td>
+                    <td>{{ gasto.categoria.nombre }}</td>
+                    <td><span class="badge bg-primary">${{ gasto.monto }}</span></td>
+                    <td>{{ gasto.descripcion|default:"—" }}</td>
+                    <td>
+                        {% if gasto.imagen %}
+                            <img src="{{ gasto.imagen.url }}" alt="Recibo" style="max-height:60px; border-radius:6px;">
+                        {% else %}
+                            <span class="text-muted">Sin imagen</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'gasto_edit' gasto.pk %}" class="btn btn-outline-secondary btn-sm">
+                            ✏️
+                        </a>
+                        <form action="{% url 'gasto_delete' gasto.pk %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger btn-sm" title="Eliminar">
+                                🗑️
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No hay gastos registrados aún.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 </body>

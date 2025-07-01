@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-q=1e#az=b+rm3_@1x8xs#*4vaet^%7@*fn%#5xzu%5xu5#j74d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://major-cloths-see.loca.lt']
 
 
 # Application definition

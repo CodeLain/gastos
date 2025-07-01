@@ -42,7 +42,7 @@
             {% endif %}
 
             <div class="mb-3">
-                <label for="id_categoria" class="form-label">Categoría</label>
+                <label for="id_categoria" class="form-label">*Categoría</label>
                 {{ form.categoria|add_class:"form-select" }}
                 {% if form.categoria.errors %}
                     <div class="text-danger small">{{ form.categoria.errors.0 }}</div>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="id_monto" class="form-label">Monto</label>
+                <label for="id_monto" class="form-label">*Monto</label>
                 {{ form.monto|add_class:"form-control" }}
                 {% if form.monto.errors %}
                     <div class="text-danger small">{{ form.monto.errors.0 }}</div>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="id_fecha" class="form-label">Fecha</label>
+                <label for="id_fecha" class="form-label">*Fecha</label>
                 {{ form.fecha|add_class:"form-control" }}
                 {% if form.fecha.errors %}
                     <div class="text-danger small">{{ form.fecha.errors.0 }}</div>
