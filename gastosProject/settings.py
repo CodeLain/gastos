@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://major-cloths-see.loca.lt']
+CSRF_TRUSTED_ORIGINS = ['https://major-cloths-see.loca.lt', 'https://chilly-keys-smash.loca.lt', 'https://tender-goats-lick.loca.lt']
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'gastosProject.urls'
 
@@ -90,17 +91,9 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+        "NAME": "gastos.validators.CustomMinimumLengthValidator",
+        "OPTIONS": {"min_length": 8},
+    }
 ]
 
 
