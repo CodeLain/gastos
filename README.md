@@ -70,17 +70,20 @@ rfbrowser init  # Instala navegadores
 
 #### 2. Ejecutar tests
 
+Para ejecutar estos tests se debn eliminar previamente los usuarios cr
 ```bash
 robot robot/tests/
 ```
 
 Si se desea ejecutar un caso en particular:
 
-- Login exitoso
-- Crear gasto
-- Editar gasto
-- Cerrar sesión
-- Crear categoría
+- robot robot/tests/tc001.robot
+- robot robot/tests/tc002.robot
+- robot robot/tests/tc006.robot
+- robot robot/tests/tc009.robot
+- robot robot/tests/tc010.robot
+- robot robot/tests/tc012.robot
+- robot robot/tests/tc015.robot
 
 Los archivos `.robot` están en la carpeta `tests/`.
 
