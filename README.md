@@ -60,7 +60,9 @@ Los tests se encuentran en `gastos/tests/`
 
 ### Tests funcionales con Robot Framework
 
-Se debe ejecutar el test tc0_init_user.robot para crear el usuario inicial, luego de ejecutados se deben eliminar los datos generados por los tests mediante:
+Se debe ejecutar el test tc0_init_user.robot para crear el usuario inicial, robot robot/resources/tc0_init_user.robot
+
+Luego de ejecutados se deben eliminar los datos generados por los tests mediante:
 - ingresar en http://127.0.0.1:8000/admin/ (visor web de la base de datos)
 - loguearse con el superuser creado en 4. Migraciones y superusuario
 - ingresar en Users, Categorias, Gastos. Seleccionar todo y en Action seleccionar Delete selected y presionar Go
@@ -74,15 +76,15 @@ pip install robotframework-browser
 rfbrowser init  # Instala navegadores
 ```
 
-#### 2. Ejecutar tests
+#### 2. Ejecutar tests recordar ejecutar robot robot/resources/tc0_init_user.robot y luego borrar con los pasos mencionados anteriormente
 
-Para ejecutar estos tests se debn eliminar previamente los usuarios cr
 ```bash
 robot robot/tests/
 ```
 
 Si se desea ejecutar un caso en particular:
 
+- robot robot/tests/tc0_init_user.robot
 - robot robot/tests/tc001.robot
 - robot robot/tests/tc002.robot
 - robot robot/tests/tc006.robot
@@ -113,6 +115,6 @@ k6 run loadTest.js
 
 ## Autores
 
-- Federico Alberti, Gustavo Bertoletti, Rodrigo Torres
+- Federico Alberti, Gustavo Bertoletti, Rodrigo Torres 
 - GitHub: [CodeLain](https://github.com/CodeLain)
 

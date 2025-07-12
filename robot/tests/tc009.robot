@@ -22,7 +22,7 @@ Crear Gasto con campos válidos
     Wait For Elements State    id=id_monto    visible    timeout=10s
 
     # Completar campos
-    Select Options By       id=id_categoria    label    Transporte
+    Select Options By       id=id_categoria    label    TransporteTest
     Type Text               id=id_monto        120.50
     Type Text               id=id_fecha        2025-06-15
     Type Text               id=id_descripcion  Taxi al aeropuerto
@@ -38,4 +38,4 @@ Crear Gasto con campos válidos
     ${body}=                 Get Text               css=table
     Should Contain          ${body}                Taxi al aeropuerto
     Should Contain          ${body}                120.50
-    Should Contain          ${body}                July 22, 2025
+    Should Contain          ${body}                June 15, 2025
