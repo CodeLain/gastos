@@ -76,13 +76,13 @@ pip install robotframework-browser
 rfbrowser init  # Instala navegadores
 ```
 
-#### 2. Ejecutar tests recordar ejecutar robot robot/resources/tc0_init_user.robot y luego borrar con los pasos mencionados anteriormente
+#### 2. Ejecutar tests recordar ejecutar robot robot/resources/tc0_init_user.robot y luego de ejecutados borrar con los pasos mencionados anteriormente
 
 ```bash
 robot robot/tests/
 ```
 
-Si se desea ejecutar un caso en particular:
+Si se desea ejecutar un caso en particular pero recordar que tienen dependencia de tc0_init_user.robot:
 
 - robot robot/tests/tc0_init_user.robot
 - robot robot/tests/tc001.robot
