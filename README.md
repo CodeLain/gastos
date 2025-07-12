@@ -20,7 +20,7 @@ cd gastos
 2. Crear y activar entorno virtual:
 
 ```bash
-python -m venv venv
+python -m venv venv (dependiendo de la instalacion de python puede tener que ejecutar python3 -m venv venv)
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 ```
@@ -38,10 +38,10 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-5. Levantar el servidor:
+5. Levantar el servidor y proyecto en si, el mismo queda disponible en http://127.0.0.1:8000/:
 
 ```bash
-python manage.py runserver
+python manage.py runserver (recordatorio dependiendo de la instalacion de python puede ser python3 en vez de python, ej: python3 manage.py runserver)
 ```
 
 ---
@@ -51,7 +51,7 @@ python manage.py runserver
 ### Tests unitarios con Django
 
 ```bash
-python manage.py test gastos.tests --verbosity=2
+python manage.py test gastos.tests --verbosity=2 (por lo anterior puede ser: python3 manage.py test gastos.tests --verbosity=2)
 ```
 
 Los tests se encuentran en `gastos/tests/`
@@ -60,7 +60,13 @@ Los tests se encuentran en `gastos/tests/`
 
 ### Tests funcionales con Robot Framework
 
-#### 1. Instalar dependencias
+Se debe ejecutar el test tc0_init_user.robot para crear el usuario inicial, luego de ejecutados se deben eliminar los datos generados por los tests mediante:
+- ingresar en http://127.0.0.1:8000/admin/ (visor web de la base de datos)
+- loguearse con el superuser creado en 4. Migraciones y superusuario
+- ingresar en Users, Categorias, Gastos. Seleccionar todo y en Action seleccionar Delete selected y presionar Go
+- confirmar
+
+#### 1. Instalar dependencias, por favor no olvidar rfbrowser init
 
 ```bash
 pip install robotframework
