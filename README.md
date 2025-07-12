@@ -1,6 +1,3 @@
-# Gastos – App de Control de Gastos Personales
-
-Una aplicación web desarrollada en **Django** que permite registrar, listar y administrar tus gastos personales por categorías. Soporta autenticación de usuarios, subida de imágenes de recibos y tests automatizados funcionales y de rendimiento.
 
 ##  Requisitos
 
@@ -89,7 +86,7 @@ Los archivos `.robot` están en la carpeta `tests/`.
 
 ---
 
-### 🧪 Pruebas de carga con K6
+### Pruebas de carga con K6
 
 #### 1. Instalar K6
 
@@ -101,41 +98,11 @@ choco install k6  # Windows
 #### 2. Ejecutar prueba
 
 ```bash
-k6 run k6/test_login.js
+k6 run loadTest2.js
+k6 run loadTest.js
 ```
 
-Ejemplo de test en `k6/test_login.js`:
-
-```javascript
-import http from 'k6/http';
-
-export let options = {
-  vus: 10,
-  duration: '10s',
-};
-
-export default function () {
-  let url = 'http://127.0.0.1:8000/login/';
-  let payload = {
-    username: 'fede2',
-    password: 'hola1234',
-  };
-
-  let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-
-  http.post(url, payload, { headers });
-}
-```
-
----
-
-## 🖼️ Capturas
-
-_(Opcional: puedes agregar capturas de pantalla del listado de gastos, formulario de login, etc.)_
-
----
-
-## 🧑‍💻 Autor
+## Autor
 
 - Federico Alberti, Gustavo Bertoletti, 
 - GitHub: [CodeLain](https://github.com/CodeLain)
