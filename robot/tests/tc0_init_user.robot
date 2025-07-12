@@ -1,7 +1,7 @@
 *** Variables ***
-${USERNAME}       prueba_user
-${EMAIL}          prueba@example.com
-${PASSWORD}       12345
+${USERNAME}       fede2
+${EMAIL}          prueba33@example.com
+${PASSWORD}       hola1234
 
 *** Settings ***
 Library     Browser
