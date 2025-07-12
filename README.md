@@ -71,10 +71,10 @@ rfbrowser init  # Instala navegadores
 #### 2. Ejecutar tests
 
 ```bash
-robot tests/
+robot robot/tests/
 ```
 
-Ejecuta casos como:
+Si se desea ejecutar un caso en particular:
 
 - Login exitoso
 - Crear gasto
@@ -102,8 +102,8 @@ k6 run loadTest2.js
 k6 run loadTest.js
 ```
 
-## Autor
+## Autores
 
-- Federico Alberti, Gustavo Bertoletti, 
+- Federico Alberti, Gustavo Bertoletti, Rodrigo Torres
 - GitHub: [CodeLain](https://github.com/CodeLain)
 

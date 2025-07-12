@@ -65,7 +65,7 @@
         {% endfor %}
     </div>
     {% if user.is_authenticated %}
-        <a href="{% url 'categoria_create' %}" class="btn btn-sm btn-success">➕ Nueva categoría</a>
+        <a href="{% url 'categoria_create' %}" class="btn btn-sm btn-success" id="nueva_categoria">➕ Nueva categoría</a>
     {% endif %}
 </div>
 

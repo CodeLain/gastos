@@ -1,7 +1,7 @@
 *** Variables ***
-${USERNAME}       prueba_user
-${EMAIL}          prueba@example.com
-${PASSWORD}       12345
+${USERNAME}       gus123
+${EMAIL}          gus@mail.com
+${PASSWORD}       gus1234!
 
 *** Settings ***
 Library     Browser
@@ -17,7 +17,8 @@ Register New User Successfully
     Type Text                 id=id_password2    ${PASSWORD}
     Click With Options        text=Registrarse    force=True
 
-    Wait For Elements State    text=La contraseña debe tener al menos 8 caracteres.    visible    timeout=10s
+    # Verify redirect to gastos list (assuming it redirects there)
+    Wait For Elements State    text=Lista de Gastos    visible    timeout=10s
 
     ${body}=                  Get Text    css=body
-    Should Contain           ${body}      La contraseña debe tener al menos 8 caracteres.
+    Should Contain           ${body}      Lista de Gastos

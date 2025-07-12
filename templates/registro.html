@@ -41,4 +41,31 @@
     </div>
 </div>
 </body>
+<script>
+    const userInput = document.getElementById('id_username');
+    userInput.oninvalid = function() {
+      this.setCustomValidity('El nombre de usuario es obligatorio.');
+    };
+    userInput.oninput = function() {
+      this.setCustomValidity('');
+    };
+
+    const userPass = document.getElementById('id_password1');
+    userPass.oninvalid = function() {
+      this.setCustomValidity('La contraseña es obligatoria.');
+    };
+    userPass.oninput = function() {
+      this.setCustomValidity('');
+    };
+
+    const userMail = document.getElementById('id_email');
+    userMail.oninvalid = function() {
+      this.setCustomValidity('El formato del email debe ser valido.');
+    };
+    userMail.oninput = function() {
+      this.setCustomValidity('');
+    };
+
+    id_email
+  </script>
 </html>
