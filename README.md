@@ -46,19 +46,19 @@ python manage.py runserver
 
 ---
 
-## 🧪 Testing
+##  Testing
 
-### ✅ Tests unitarios con Django
+### Tests unitarios con Django
 
 ```bash
-python manage.py test
+python manage.py test gastos.tests --verbosity=2
 ```
 
-Los tests se encuentran en `gastos/tests/`. Incluyen pruebas de vistas como `GastoListView`, `GastoCreateView`, entre otras.
+Los tests se encuentran en `gastos/tests/`
 
 ---
 
-### 🤖 Tests funcionales con Robot Framework
+### Tests funcionales con Robot Framework
 
 #### 1. Instalar dependencias
 

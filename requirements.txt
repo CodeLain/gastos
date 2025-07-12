@@ -1,0 +1,6 @@
+Django>=5.1
+pillow
+django-widget-tweaks
+robotframework
+robotframework-browser
+k6  # Nota: K6 no se instala con pip, se instala con brew o choco
