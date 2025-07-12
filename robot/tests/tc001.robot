@@ -12,5 +12,3 @@ Login And See Gastos List
     Wait For Elements State    text=Lista de Gastos    visible
     ${page}=    Get Text    css=body
     Should Contain    ${page}    Nuevo Gasto
-
-*** TC-001, TC-002, TC-006, TC‑009, TC‑010, TC‑012, TC-015 ***
